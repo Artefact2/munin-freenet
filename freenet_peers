@@ -1,0 +1,42 @@
+#!/usr/bin/php
+<?php
+require '/home/romain/Projects/munin-freenet/freenet_lib';
+
+if($argc > 1 && $argv[1] == 'config') {
+
+echo <<<EOT
+graph_title Freenet peers
+graph_args --lower-limit 0
+graph_vlabel peers
+graph_category freenet
+graph_info Freenet peers we are connected to
+
+connected.label connected
+connected.type GAUGE
+connected.draw AREASTACK
+connected.info Peers we are routing requests to
+
+busy.label backed off
+busy.type GAUGE
+busy.draw AREASTACK
+busy.info Overloaded peers
+
+tooold.label too old
+tooold.type GAUGE
+tooold.draw AREASTACK
+tooold.info Those peers haven't a recent enough version of Freenet
+
+EOT;
+
+} else {
+
+echo <<<EOT
+connected.value   {$fcpData['volatile.numberOfConnected']}
+busy.value        {$fcpData['volatile.numberOfRoutingBackedOff']}
+tooold.value      {$fcpData['volatile.numberOfTooOld']}
+
+EOT;
+
+}
+
+

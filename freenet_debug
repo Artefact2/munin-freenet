@@ -1,0 +1,5 @@
+#!/usr/bin/php
+<?php
+require '/home/romain/Projects/munin-freenet/freenet_lib';
+
+print_r($fcpData);

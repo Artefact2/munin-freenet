@@ -1,0 +1,48 @@
+#!/usr/bin/php
+<?php
+require '/home/romain/Projects/munin-freenet/freenet_lib';
+
+if($argc > 1 && $argv[1] == 'config') {
+
+echo <<<EOT
+graph_title Freenet Java memory use
+graph_args --base 1024 --lower-limit 0
+graph_vlabel bytes
+graph_category freenet
+graph_info The Java memory use of Freenet
+
+used.label used
+used.type GAUGE
+used.draw LINE
+used.info Used Java memory
+
+free.label free
+free.type GAUGE
+free.draw LINE
+free.info Free Java memory
+
+allocated.label allocated
+allocated.type GAUGE
+allocated.draw LINE
+allocated.info Java allocated memory
+
+maximum.label maximum
+maximum.type GAUGE
+maximum.draw LINE
+maximum.info Maximum Java memory use
+
+EOT;
+
+} else {
+
+echo <<<EOT
+maximum.value   {$fcpData['volatile.maximumJavaMemory']}
+allocated.value {$fcpData['volatile.allocatedJavaMemory']}
+used.value      {$fcpData['volatile.usedJavaMemory']}
+free.value      {$fcpData['volatile.freeJavaMemory']}
+
+EOT;
+
+}
+
+

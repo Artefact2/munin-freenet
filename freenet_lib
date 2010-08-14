@@ -1,0 +1,46 @@
+<?php
+
+define('HOST', '127.0.0.1');
+define('PORT', 9482);
+define('TMP', '/tmp/munin_freenet_fcp_data');
+
+if(!file_exists(TMP) || filemtime(TMP) < time() - 200) {
+$i = 0;
+while(++$i < 5) {
+
+	ob_start();
+	system('netcat -w 1 '.HOST.' '.PORT.' <<EOF '."
+ClientHello
+Name=Munin
+ExpectedVersion=2.0
+EndMessage
+
+GetNode
+WithPrivate=false
+WithVolatile=true
+EndMessage
+
+Disconnect
+EndMessage
+
+EOF
+");
+	$fcpResponse = ob_get_clean();
+
+	$data = explode("\n", $fcpResponse);
+	$fcpData = array();
+	foreach($data as $var) {
+		$equalPos = strpos($var, '=');
+		if($equalPos !== false) {
+			$fcpData[substr($var, 0, $equalPos)] = substr($var, $equalPos+1);
+		}
+	}
+	file_put_contents(TMP, serialize($fcpData));
+	if(isset($fcpData['volatile.usedJavaMemory'])) {
+		break;
+	} else sleep(2);
+}
+} else {
+	$fcpData = unserialize(file_get_contents(TMP));
+}
+

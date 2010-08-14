@@ -1,0 +1,30 @@
+#!/usr/bin/php
+<?php
+require '/home/romain/Projects/munin-freenet/freenet_lib';
+
+if($argc > 1 && $argv[1] == 'config') {
+
+echo <<<EOT
+graph_title Freenet ping time
+graph_args --lower-limit 0
+graph_vlabel ping time (ms)
+graph_category freenet
+graph_info Ping time of the node
+
+ping.label ping time
+ping.type GAUGE
+ping.draw LINE
+ping.info Ping time
+
+EOT;
+
+} else {
+
+echo <<<EOT
+ping.value {$fcpData['volatile.averagePingTime']}
+
+EOT;
+
+}
+
+

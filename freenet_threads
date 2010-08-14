@@ -1,0 +1,30 @@
+#!/usr/bin/php
+<?php
+require '/home/romain/Projects/munin-freenet/freenet_lib';
+
+if($argc > 1 && $argv[1] == 'config') {
+
+echo <<<EOT
+graph_title Freenet thread count
+graph_args --lower-limit 0
+graph_vlabel threads
+graph_category freenet
+graph_info Number of threads used by the node
+
+threads.label threads
+threads.type GAUGE
+threads.draw LINE
+threads.info Number of threads used by the node
+
+EOT;
+
+} else {
+
+echo <<<EOT
+threads.value {$fcpData['volatile.runningThreadCount']}
+
+EOT;
+
+}
+
+

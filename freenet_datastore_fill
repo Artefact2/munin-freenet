@@ -1,0 +1,36 @@
+#!/usr/bin/php
+<?php
+require '/home/romain/Projects/munin-freenet/freenet_lib';
+
+if($argc > 1 && $argv[1] == 'config') {
+
+echo <<<EOT
+graph_title Freenet datastore fill rate
+graph_args --lower-limit 0
+graph_vlabel keys per minute
+graph_category freenet
+graph_info Datastore fill rate
+
+store.label store
+store.type DERIVE
+store.draw LINE
+store.info Store
+
+cache.label cache
+cache.type DERIVE
+cache.draw LINE
+cache.info Cache
+
+EOT;
+
+} else {
+
+echo <<<EOT
+store.value   {$fcpData['volatile.storeKeys']}
+cache.value   {$fcpData['volatile.cachedKeys']}
+
+EOT;
+
+}
+
+
