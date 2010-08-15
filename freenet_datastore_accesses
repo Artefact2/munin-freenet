@@ -10,7 +10,7 @@ require dirname(realpath(__FILE__)).'/freenet_lib';
 
 if($argc > 1 && $argv[1] == 'config') {
 
-echo <<<EOT
+echo <<<'EOT'
 graph_title Freenet datastore access rate
 graph_args --lower-limit 0
 graph_vlabel keys per ${graph_period}
