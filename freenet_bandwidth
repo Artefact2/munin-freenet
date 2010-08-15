@@ -11,29 +11,29 @@ require dirname(realpath(__FILE__)).'/freenet_lib';
 if($argc > 1 && $argv[1] == 'config') {
 
 echo <<<EOT
-graph_title Freenet datastore fill rate
-graph_args --lower-limit 0
-graph_vlabel keys per ${graph_period}
+graph_title Freenet bandwidth usage
+graph_args --lower-limit 0 --base 1024
+graph_vlabel bytes per ${graph_period}
 graph_category freenet
-graph_info Datastore fill rate
+graph_info Bandwidth usage
 
-store.label store
+store.label input
 store.type DERIVE
 store.draw LINE
-store.info Store
+store.info Input
 
-cache.label cache
+cache.label output
 cache.type DERIVE
 cache.draw LINE
-cache.info Cache
+cache.info Output
 
 EOT;
 
 } else {
 
 echo <<<EOT
-store.value   {$fcpData['volatile.storeKeys']}
-cache.value   {$fcpData['volatile.cachedKeys']}
+input.value   {$fcpData['volatile.totalInputBytes']}
+output.value   {$fcpData['volatile.totalOutputBytes']}
 
 EOT;
 
