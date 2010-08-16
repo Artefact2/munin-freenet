@@ -6,7 +6,7 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */
 
 
-$conf = parse_ini_file(__DIR__.'/munin-freenet.ini');
+$conf = parse_ini_file(dirname(realpath(__FILE__)).'/munin-freenet.ini');
 define('HOST', $conf['fred_address']);
 define('PORT', $conf['fnp_port']);
 define('TMP', $conf['cachefile']);
