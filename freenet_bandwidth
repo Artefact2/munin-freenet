@@ -10,6 +10,8 @@ require dirname(realpath(__FILE__)).'/freenet_lib';
 
 if($argc > 1 && $argv[1] == 'config') {
 
+$type = $config['areastacks'] ? 'AREASTACK' : 'LINE';
+
 echo '
 graph_title Freenet bandwidth usage
 graph_args --lower-limit 0 --base 1024
@@ -17,23 +19,27 @@ graph_vlabel bytes per ${graph_period}
 graph_category freenet
 graph_info Bandwidth usage
 
-store.label input
-store.type DERIVE
-store.draw LINE
-store.info Input
+input.label input
+input.type DERIVE
+input.draw '.$type.'
+input.info Input
 
-cache.label output
-cache.type DERIVE
-cache.draw LINE
-cache.info Output
+output.label output
+output.type DERIVE
+output.draw '.$type.'
+output.info Output
 
 ';
 
 } else {
 
+$in = bcmod($fcpData['volatile.totalInputBytes'], bcpow(2, 32));
+$out = bcmod($fcpData['volatile.totalOutputBytes'], bcpow(2, 32));
+
+
 echo <<<EOT
-input.value   {$fcpData['volatile.totalInputBytes']}
-output.value   {$fcpData['volatile.totalOutputBytes']}
+input.value    $in
+output.value   $out
 
 EOT;
 
