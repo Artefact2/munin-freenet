@@ -21,17 +21,17 @@ graph_info Freenet peers we are connected to
 
 connected.label connected
 connected.type GAUGE
-connected.draw AREASTACK
+connected.draw $type
 connected.info Peers we are routing requests to
 
 busy.label backed off
 busy.type GAUGE
-busy.draw AREASTACK
+busy.draw $type
 busy.info Overloaded peers
 
 tooold.label too old
 tooold.type GAUGE
-tooold.draw AREASTACK
+tooold.draw $type
 tooold.info Those peers haven't a recent enough version of Freenet
 
 EOT;
