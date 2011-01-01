@@ -33,9 +33,8 @@ output.info Output
 
 } else {
 
-$in = bcmod($fcpData['volatile.totalInputBytes'], bcpow(2, 32));
-$out = bcmod($fcpData['volatile.totalOutputBytes'], bcpow(2, 32));
-
+$in = intval($fcpData['volatile.totalInputBytes']);
+$out = intval($fcpData['volatile.totalOutputBytes']);
 
 echo <<<EOT
 input.value    $in
