@@ -18,11 +18,14 @@ Once you get a result by running `sudo -u munin ./freenet_memory`, you
 can symlink the plugins you want in the /etc/munin/plugins directory
 (this may change according to your operating system).
 
-The following plugins are availible : 
+The following plugins are availible :
+	* freenet_bandwidth 
+	* freenet_datastore_accesses
 	* freenet_datastore_fill
 	* freenet_memory
 	* freenet_peers
 	* freenet_ping
+	* freenet_seeding
 	* freenet_threads
 
 DEPENDENCIES
