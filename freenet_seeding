@@ -10,7 +10,7 @@ require dirname(realpath(__FILE__)).'/freenet_lib';
 
 if($argc > 1 && $argv[1] == 'config') {
 
-$type = $config['areastacks'] ? 'AREASTACK' : 'LINE';
+$type = $conf['areastacks'] ? 'AREASTACK' : 'LINE';
 
 echo <<<EOT
 graph_title Freenet seeds

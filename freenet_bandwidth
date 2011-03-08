@@ -10,8 +10,8 @@ require dirname(realpath(__FILE__)).'/freenet_lib';
 
 if($argc > 1 && $argv[1] == 'config') {
 
-$type = $config['areastacks'] ? 'AREASTACK' : 'LINE';
-$upper = @$config['upper_bandwidth_limit'] ?: 6144000;
+$type = $conf['areastacks'] ? 'AREASTACK' : 'LINE';
+$upper = $conf['upper_bandwidth_limit'] ? $conf['upper_bandwidth_limit'] : 6144000;
 
 echo '
 graph_title Freenet bandwidth usage

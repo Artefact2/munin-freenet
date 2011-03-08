@@ -8,7 +8,7 @@
 
 require dirname(realpath(__FILE__)).'/freenet_lib';
 
-$upper = @$config['upper_datastore_fill_limit'] ?: 50;
+$upper = $conf['upper_datastore_fill_limit'] ? $conf['upper_datastore_fill_limit'] : 50;
 
 if($argc > 1 && $argv[1] == 'config') {
 
