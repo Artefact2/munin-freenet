@@ -14,18 +14,20 @@ $type = $config['areastacks'] ? 'AREASTACK' : 'LINE';
 
 echo '
 graph_title Freenet bandwidth usage
-graph_args --lower-limit 0 --base 1024
+graph_args --lower-limit 0 --rigid --base 1024
 graph_vlabel bytes per ${graph_period}
 graph_category freenet
 graph_info Bandwidth usage
 
 input.label input
 input.type DERIVE
+input.min 0 # prevent negative values upon node restart
 input.draw '.$type.'
 input.info Input
 
 output.label output
 output.type DERIVE
+output.min 0 # prevent negative values upon node restart
 output.draw '.$type.'
 output.info Output
 

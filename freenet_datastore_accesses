@@ -12,18 +12,20 @@ if($argc > 1 && $argv[1] == 'config') {
 
 echo '
 graph_title Freenet datastore access rate
-graph_args --lower-limit 0
+graph_args --lower-limit 0 --rigid
 graph_vlabel keys per ${graph_period}
 graph_category freenet
 graph_info Datastore access rate
 
 store.label store
 store.type DERIVE
+store.min 0	# prevent negative values upon node restart
 store.draw LINE
 store.info Store
 
 cache.label cache
 cache.type DERIVE
+cache.min 0 # prevent negative values upon node restart
 cache.draw LINE
 cache.info Cache
 
