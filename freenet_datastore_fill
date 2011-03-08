@@ -21,13 +21,13 @@ graph_info Datastore fill rate
 
 store.label store
 store.type DERIVE
-store.min 0 # prevent negative values upon node restart
+store.min 0
 store.draw LINE
 store.info Store
 
 cache.label cache
 cache.type DERIVE
-cache.min 0 # prevent negative values upon node restart
+cache.min 0
 cache.draw LINE
 cache.info Cache
 
