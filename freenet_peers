@@ -34,6 +34,11 @@ tooold.type GAUGE
 tooold.draw $type
 tooold.info Those peers haven't a recent enough version of Freenet
 
+seeding.label seeding for
+seeding.type GAUGE
+seeding.draw $type
+seeding.info Peers we are seeding for
+
 EOT;
 
 } else {
@@ -42,6 +47,7 @@ echo <<<EOT
 connected.value   {$fcpData['volatile.numberOfConnected']}
 busy.value        {$fcpData['volatile.numberOfRoutingBackedOff']}
 tooold.value      {$fcpData['volatile.numberOfTooOld']}
+seeding.value	  {$fcpData['volatile.numberOfSeedClients']}
 
 EOT;
 
